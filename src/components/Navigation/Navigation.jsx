@@ -1,7 +1,6 @@
 import { Authorization } from 'components/Authorization/Authirization';
 import { NavigationStyled } from 'components/common.styled';
 import { UserMenu } from 'components/UserMenu/UserMenu';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 

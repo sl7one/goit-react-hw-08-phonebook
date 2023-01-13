@@ -7,7 +7,6 @@ import {
 } from 'components/common.styled';
 import { FcTouchscreenSmartphone } from 'react-icons/fc';
 import { IoAirplaneOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
 import { userLogOut } from 'redux/auth/operations';
 
 const { useSelector, useDispatch } = require('react-redux');

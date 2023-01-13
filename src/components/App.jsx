@@ -15,7 +15,7 @@ export const App = () => {
 
   useEffect(() => {
     if (token) dispatch(userGet());
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   //isLogged= true; path-name=/login
 
