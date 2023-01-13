@@ -16,6 +16,14 @@ const initialState = {
   filter: '',
 };
 
+const pending = state => {
+  state.contacts.isLoading = true;
+};
+const rejected = (state, action) => {
+  state.contacts.isLoading = false;
+  state.contacts.error = action.payload;
+};
+
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
@@ -27,63 +35,46 @@ export const contactsSlice = createSlice({
       state.contactId = action.payload;
     },
   },
-  extraReducers: {
-    [fetchContacts.pending](state) {
-      state.contacts.isLoading = true;
-    },
-    [fetchContacts.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items = action.payload;
-    },
-    [fetchContacts.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
-    // -----------------DELETE----------
-    [deleteContact.pending](state) {
-      state.contacts.isLoading = true;
-    },
-    [deleteContact.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items = state.contacts.items.filter(
-        contact => contact.id !== action.payload.id
-      );
-    },
-    [deleteContact.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
-    // ----------------EDIT-----------------
-    [editContact.pending](state) {
-      state.contacts.isLoading = true;
-    },
-    [editContact.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      const index = state.contacts.items.findIndex(
-        contact => contact.id === action.payload.id
-      );
-      state.contacts.items.splice(index, 1, action.payload);
-    },
-    [editContact.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
-    // ---------------ADD------------------
-    [addContact.pending](state) {
-      state.contacts.isLoading = true;
-    },
-    [addContact.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      state.contacts.items.push(action.payload);
-    },
-    [addContact.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
+        state.contacts.error = null;
+        const gender = () => (Math.random() > 0.5 ? 'male' : 'female');
+        state.contacts.items = payload.map(contact => ({
+          ...contact,
+          gender: gender(),
+        }));
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
+        state.contacts.error = null;
+        state.contacts.items = state.contacts.items.filter(
+          contact => contact.id !== payload.id
+        );
+      })
+      .addCase(editContact.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
+        state.contacts.error = null;
+        const index = state.contacts.items.findIndex(
+          contact => contact.id === payload.id
+        );
+        state.contacts.items.splice(index, 1, payload);
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.contacts.isLoading = false;
+        state.contacts.error = null;
+
+        state.contacts.items.push(payload);
+      })
+      .addCase(fetchContacts.pending, pending)
+      .addCase(fetchContacts.rejected, rejected)
+      .addCase(deleteContact.pending, pending)
+      .addCase(deleteContact.rejected, rejected)
+      .addCase(editContact.pending, pending)
+      .addCase(editContact.rejected, rejected)
+      .addCase(addContact.pending, pending)
+      .addCase(addContact.rejected, rejected);
   },
 });
 export const { setFilter, setContactId } = contactsSlice.actions;
