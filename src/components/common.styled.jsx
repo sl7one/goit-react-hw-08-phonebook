@@ -2,43 +2,6 @@ import { Field, Form } from 'formik';
 import { NavLink } from 'react-router-dom';
 import styled, { css, keyframes } from 'styled-components';
 
-// export const AddContactFormModal = styled.div`
-//   /* opacity: 0.2; */
-
-//   }
-// `;
-export const EditContactForm = styled.div`
-  form {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 800px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    background: linear-gradient(
-      135deg,
-      rgba(178, 251, 195, 1) 0%,
-      rgba(232, 141, 236, 1) 100%
-    );
-    padding: 20px;
-    box-shadow: inset 3px 2px 19px -6px rgba(0, 0, 0, 1);
-
-    /* background: ${({ id }) => {
-      switch (id) {
-        case 'edit':
-          return ' linear-gradient(135deg, rgba(178,251,195,1) 0%, rgba(232,141,236,1) 100%);';
-
-        case 'add':
-          return 'linear-gradient(-135deg, rgba(178,251,195,1) 0%, rgba(232,141,236,1) 100%)';
-
-        default:
-          return 'Beige';
-      }
-    }}; */
-  }
-`;
 export const Button = styled.button`
   border: none;
   border-radius: 10px;
@@ -139,19 +102,42 @@ export const FieldStyled = styled(Field)`
     box-shadow: inset 4px 4px 19px -10px rgba(0, 0, 0, 1);
   }
 `;
-export const FormStyled = styled(Form)`
-  background-color: green;
+export const AddContactStyled = styled(Form)`
+  background: linear-gradient(
+    -135deg,
+    rgba(236, 203, 141, 1) 0%,
+    rgba(251, 178, 194, 1) 100%
+  );
+  box-shadow: 3px 3px 16px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   padding: 30px;
   gap: 10px;
 `;
 export const FormEditStyled = styled.form`
-  background-color: red;
+  background: linear-gradient(
+    -135deg,
+    rgba(141, 216, 236, 1) 0%,
+    rgba(178, 251, 195, 1) 100%
+  );
+  box-shadow: 3px 3px 16px 0px rgba(0, 0, 0, 0.75);
   display: flex;
   gap: 10px;
   align-items: center;
   border-radius: 10px;
   padding: 30px;
+`;
+export const EditFormButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+export const EditButtons = styled.button`
+  border: 1px solid gray;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 15px;
+  margin-left: 5px;
+  font-size: 20px;
 `;
 export const Label = styled.label`
   display: flex;
@@ -169,22 +155,7 @@ export const Header = styled.div`
   /* padding: 0px: 30px; */
   /* padding-top: 30px; */
 `;
-// export const Background = styled.div`
-//   /* width: 100vw; */
-//   height: 100vh;
-//   /* background: ${({ id }) => {
-//     switch (id) {
-//       case 'register':
-//         return 'linear-gradient(-135deg, rgba(178, 251, 214, 1) 0%, rgba(141, 146, 236, 1) 100%);';
-//       case 'login':
-//         return 'linear-gradient( -135deg, rgba(251,229,178,1) 0%, rgba(236,141,141,1) 100% );';
-//       case 'contactList':
-//         return 'linear-gradient( 135deg, rgba(178,251,195,1) 0%, rgba(232,141,236,1) 100% );';
-//       default:
-//         return 'red';
-//     }
-//   }}; */
-// `;
+
 export const List = styled.ol`
   display: flex;
   flex-direction: column;
@@ -429,6 +400,9 @@ export const Container = styled.div`
     }
   }};
 `;
+const modalEdit = keyframes`
+0%{opacity: 0}
+100%{opacity: 1}`;
 export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
@@ -439,4 +413,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  animation-name: ${modalEdit};
+  animation-duration: 350ms;
 `;

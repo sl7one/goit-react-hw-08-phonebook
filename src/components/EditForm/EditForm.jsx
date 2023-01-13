@@ -1,6 +1,7 @@
 import {
   Backdrop,
-  Button,
+  EditButtons,
+  EditFormButtons,
   FormEditStyled,
   Input,
   Label,
@@ -53,18 +54,17 @@ export const EditForm = ({ contact }) => {
             />
           </Label>
         </Wrapper>
-        <div>
-          <Button type="submit">Apply</Button>
-          <Button
+        <EditFormButtons>
+          <EditButtons type="submit">Apply</EditButtons>
+          <EditButtons
             type="button"
-            style={{ marginTop: '15px' }}
             onClick={() => {
               dispatch(closeEditForm());
             }}
           >
             Close
-          </Button>
-        </div>
+          </EditButtons>
+        </EditFormButtons>
       </FormEditStyled>
     </Backdrop>
   );

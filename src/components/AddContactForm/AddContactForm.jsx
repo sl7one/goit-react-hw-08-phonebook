@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import { closeModal } from 'redux/contacts/modalSlice';
 import { addContact } from 'redux/contacts/operations';
 import {
+  AddContactStyled,
   Backdrop,
   Button,
   FieldStyled,
-  FormStyled,
   Label,
 } from 'components/common.styled';
 
@@ -38,7 +38,7 @@ export const AddContactForm = () => {
       >
         {() => (
           <Backdrop>
-            <FormStyled id="add">
+            <AddContactStyled id="add">
               <Label htmlFor="name">
                 Name <FieldStyled id="name" name="name" />
                 <ErrorMessage name="name" />
@@ -58,7 +58,7 @@ export const AddContactForm = () => {
                   Close
                 </Button>
               </div>
-            </FormStyled>
+            </AddContactStyled>
           </Backdrop>
         )}
       </Formik>

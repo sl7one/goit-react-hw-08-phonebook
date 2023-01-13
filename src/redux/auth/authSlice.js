@@ -42,7 +42,6 @@ export const authSlice = createSlice({
       .addCase(userGet.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
-        console.log(state.isLoggedIn);
       })
       .addCase(userRegistration.rejected, rejected)
       .addCase(userRegistration.pending, pending)
