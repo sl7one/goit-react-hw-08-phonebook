@@ -111,7 +111,15 @@ export const AddContactStyled = styled(Form)`
   box-shadow: 3px 3px 16px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+`;
+export const AddFormButtons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 20px;
 `;
 export const FormEditStyled = styled.form`
   background: linear-gradient(
@@ -138,6 +146,10 @@ export const EditButtons = styled.button`
   padding: 15px;
   margin-left: 5px;
   font-size: 20px;
+  transition: background-color 350ms ease-in-out;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 `;
 export const Label = styled.label`
   display: flex;

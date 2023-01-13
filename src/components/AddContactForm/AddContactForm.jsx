@@ -5,8 +5,9 @@ import { closeModal } from 'redux/contacts/modalSlice';
 import { addContact } from 'redux/contacts/operations';
 import {
   AddContactStyled,
+  AddFormButtons,
   Backdrop,
-  Button,
+  EditButtons,
   FieldStyled,
   Label,
 } from 'components/common.styled';
@@ -52,12 +53,15 @@ export const AddContactForm = () => {
                 />
                 <ErrorMessage name="number" />
               </Label>
-              <div>
-                <Button type="submit">Add</Button>
-                <Button type="button" onClick={() => dispath(closeModal())}>
+              <AddFormButtons>
+                <EditButtons type="submit">Add</EditButtons>
+                <EditButtons
+                  type="button"
+                  onClick={() => dispath(closeModal())}
+                >
                   Close
-                </Button>
-              </div>
+                </EditButtons>
+              </AddFormButtons>
             </AddContactStyled>
           </Backdrop>
         )}
