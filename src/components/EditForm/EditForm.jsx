@@ -27,7 +27,6 @@ export const EditForm = ({ contact }) => {
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(editContact({ ...contact, ...formData }));
-    dispatch(closeEditForm());
   };
 
   return (

@@ -34,7 +34,6 @@ export const AddContactForm = () => {
         validationSchema={SignupSchema}
         onSubmit={values => {
           dispath(addContact(values));
-          dispath(closeModal());
         }}
       >
         {() => (
@@ -66,18 +65,3 @@ export const AddContactForm = () => {
     </div>
   );
 };
-
-// if (!values) return;
-// axios
-//   .put(
-//     `https://63b72b2d4d97e82aa3b6324d.mockapi.io/api/v1/contacts/${idContact}`,
-//     values
-//   )
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
-
-// setModal(false);

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addContact, editContact } from './operations';
 
 const initialState = {
   modal: false,
@@ -21,6 +22,15 @@ export const modalSlice = createSlice({
     closeEditForm(state) {
       state.editForm = false;
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(addContact.fulfilled, state => {
+        state.modal = false;
+      })
+      .addCase(editContact.fulfilled, state => {
+        state.modal = false;
+      });
   },
 });
 export const { showModal, closeModal, showEditForm, closeEditForm } =
